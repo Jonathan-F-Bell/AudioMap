@@ -12,35 +12,52 @@ import processing.sound.*;
 
 FFT fft;
 AudioIn in;
-int bands = 512;
-int bandCount = 20;
-int stivity = 20;
+int bands = 2048;
+int bandCount = 150;
+int stivity = 5;
+int colorstivity = 10;
 float[] spectrum = new float[bands];
+VisualizerFactory vFactory = new VisualizerFactory();
+IVisualizer v;
 
 void setup() {
-  size(900, 800);
+  //size(900, 800);
+  fullScreen();
   background(0);
-  
+  colorMode(HSB);
+  //frameRate(60);
   fft = new FFT(this, bands);
   in = new AudioIn(this, 0);
   
   in.start();
   
   fft.input(in);
+  
+  //This is a placeholder, will be replaced with manual
+  //control for choosing a visualizer type
+  v = vFactory.makeVisualizer("bars", bandCount);
+  println(v);
 }
 
 void draw() {
   //background(0);
-  pushStyle();
-  fill(0, 10);
-  rect(0, 0, width, height);
-  popStyle();
+  //println(frameRate);
+  //pushStyle();
+  //fill(0, 10);
+  //rect(0, 0, width, height);
+  //popStyle();
   fft.analyze(spectrum);
   
-  for(int i = 0; i < bandCount; i++) {
-    pushStyle();
-    stroke(255);
-    rect( (width / bandCount) * i, height - spectrum[i * 2]*height*stivity, width / bandCount, height - spectrum[i]*height*stivity);
-    popStyle();
-  }
+  v.update(spectrum);
+  v.display();
+  
+  //for(int i = 0; i < bandCount; i++) {
+  //  pushStyle();
+  //  colorMode(HSB);
+  //  noStroke();
+  //  fill(i, 255, spectrum[i] * 255 * colorstivity, 50);
+  //  //rect( (width / bandCount) * i, height - spectrum[i]*height*stivity, width / bandCount, height - spectrum[i]*height*stivity);
+  //  rect( (width / bandCount) * i, 0, width / bandCount, height);
+  //  popStyle();
+  //}
 }
