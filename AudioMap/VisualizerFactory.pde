@@ -15,8 +15,9 @@ class VisualizerFactory {
     if (type.equals("bars")) {
       return new BarsVisualizer(bandCount);
     } else if (type.equals("bubbles")) {
-      println("made bubVisualizer");
       return new BubbleVisualizer(bandCount);
+    } else if (type.equals("circle")) {
+      return new CircleVisualizer(bandCount);
     }
     else {
       throw new IllegalArgumentException("Invalid Visualizer Type");

@@ -22,8 +22,8 @@ IVisualizer v;
 public Mods m = new Mods();
 
 void setup() {
-  //size(900, 800, P2D);
-  fullScreen(P2D);
+  size(900, 800, P2D);
+  //fullScreen(P2D);
   background(0);
   colorMode(HSB);
   //frameRate(60);
@@ -36,7 +36,7 @@ void setup() {
   
   //This is a placeholder, will be replaced with manual
   //control for choosing a visualizer type
-  v = vFactory.makeVisualizer("bars", bandCount);
+  v = vFactory.makeVisualizer("circle", bandCount);
   println(v);
 }
 
