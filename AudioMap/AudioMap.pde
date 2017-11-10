@@ -19,10 +19,11 @@ int colorstivity = 10;
 float[] spectrum = new float[bands];
 VisualizerFactory vFactory = new VisualizerFactory();
 IVisualizer v;
+public Mods m = new Mods();
 
 void setup() {
-  //size(900, 800);
-  fullScreen();
+  //size(900, 800, P2D);
+  fullScreen(P2D);
   background(0);
   colorMode(HSB);
   //frameRate(60);
@@ -60,4 +61,19 @@ void draw() {
   //  rect( (width / bandCount) * i, 0, width / bandCount, height);
   //  popStyle();
   //}
+}
+
+void keyReleased() {
+  if (key == 'f') {
+    m.modifyIntensity(-1);
+  }
+  if (key == 'g') {
+    m.modifyIntensity(1);
+  }
+  if (key == 'h') {
+    m.modifyMood(-1);
+  }
+  if (key == 'j') {
+    m.modifyMood(1);
+  }
 }
