@@ -60,4 +60,12 @@ class BarsVisualizer implements IVisualizer {
     }
     popStyle();
   }
+  
+  String type() {
+    return "bars";
+  }
+  
+  void reset() {
+   //not needed for this vis 
+  }
 }

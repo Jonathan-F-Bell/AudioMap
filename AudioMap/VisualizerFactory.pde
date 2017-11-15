@@ -24,5 +24,17 @@ class VisualizerFactory {
     }
   }
   
+  IVisualizer next(IVisualizer v, int bandCount) {
+    if (v.type().equals("bars")) {
+      return new BubbleVisualizer(bandCount);
+    } else if (v.type().equals("bubbles")) {
+      return new CircleVisualizer(bandCount);
+    } else if (v.type().equals("circle")) {
+      return new TechVisualizer(bandCount);
+    } else {
+      return new BarsVisualizer(bandCount);
+    }
+  }
+  
   
 }

@@ -78,4 +78,12 @@ class CircleVisualizer implements IVisualizer {
     popStyle();
   }
   
+  String type() {
+     return "circle"; 
+  }
+  
+  void reset() {
+    //not needed for this vis
+  }
+  
 }

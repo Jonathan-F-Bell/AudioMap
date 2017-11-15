@@ -43,4 +43,15 @@ class BubbleVisualizer implements IVisualizer {
       }
     }
   }
+  
+  String type() {
+    return "bubbles"; 
+  }
+  
+  void reset() {
+    bubbleSystems = new ArrayList<ArrayList<Bubble>>();
+    for (int i = 0; i < bandCount; i++) {
+      bubbleSystems.add(new ArrayList<Bubble>());
+    }
+  }
 }
