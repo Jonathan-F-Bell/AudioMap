@@ -6,11 +6,15 @@ class TechPolyline {
   
   Point[] points;
   int counter;
+  int xRev;
+  int yRev;
   
   TechPolyline() {
     int pointsLength = (int) random(900, 1100);
     points = new Point[pointsLength];
     counter = 0;
+    xRev = 1;
+    yRev = 1;
   }
   
   void add(Point p) {

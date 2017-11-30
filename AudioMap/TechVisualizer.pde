@@ -13,6 +13,7 @@ class TechVisualizer implements IVisualizer {
   int xVel = 0;
   int yVel = 1;
   boolean newDir;
+  boolean edge;
   boolean changeDir;
   int bassSpeed;
   int trebSpeed;
@@ -32,6 +33,7 @@ class TechVisualizer implements IVisualizer {
       //(width / bandCount) * i
     }
     newDir = true;
+    edge = false;
     changeDir = false;
     bassSpeed = 100;
     trebSpeed = 200;
@@ -115,10 +117,19 @@ class TechVisualizer implements IVisualizer {
       }
       TechPolyline curBar = bars[i];
       Point last = curBar.get(curBar.size() - 1);
-      if (newDir) {
-        curBar.add(new Point(last.x, last.y));
+      if ((last.getX() < 0 || last.getX() > width) && !newDir) {
+        curBar.xRev = -curBar.xRev;
+        edge = true;
       }
-      curBar.set(curBar.size() - 1, new Point((int)(last.x + (spectValue * xVel)), (int)(last.y + (spectValue * yVel))));
+      if ((last.getY() < 0 || last.getY() > height) && !newDir) {
+        curBar.yRev = -curBar.yRev;
+        edge = true;
+      }
+      if (newDir || edge) {
+        curBar.add(new Point(last.x, last.y));
+        edge = false;
+      }
+      curBar.set(curBar.size() - 1, new Point((int)(last.x + (spectValue * xVel * curBar.xRev)), (int)(last.y + (spectValue * yVel * curBar.yRev))));
       //curBar.add(new Point((int)(last.x + (spectValue * xVel)), (int)(last.y + (spectValue * yVel))));
     }
     if (newDir) {
@@ -172,6 +183,7 @@ class TechVisualizer implements IVisualizer {
       //(width / bandCount) * i
     }
     newDir = true;
+    edge = false;
   }
   
 }
