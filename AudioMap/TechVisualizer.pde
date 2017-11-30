@@ -19,16 +19,16 @@ class TechVisualizer implements IVisualizer {
   int turnSpeed;
   int counter;
   
-  ArrayList<ArrayList<Point>> bars;
+  TechPolyline[] bars;
   
   TechVisualizer(int bandCount) {
     this.bandCount = bandCount;
     blur = loadShader("blur.glsl");
     blurOn = false;
-    bars = new ArrayList<ArrayList<Point>>();
+    bars = new TechPolyline[bandCount];
     for (int i = 0; i < bandCount; i++) {
-      bars.add(new ArrayList<Point>());
-      bars.get(i).add(new Point(width / 2, height / 2));
+      bars[i] = new TechPolyline();
+      bars[i].add(new Point(width / 2, height / 2));
       //(width / bandCount) * i
     }
     newDir = true;
@@ -113,7 +113,7 @@ class TechVisualizer implements IVisualizer {
       if (spectValue > 30 && !newDir) {
         changeDir = true;
       }
-      ArrayList<Point> curBar = bars.get(i);
+      TechPolyline curBar = bars[i];
       Point last = curBar.get(curBar.size() - 1);
       if (newDir) {
         curBar.add(new Point(last.x, last.y));
@@ -135,18 +135,18 @@ class TechVisualizer implements IVisualizer {
     colorMode(HSB);
     strokeWeight(2);
     
-    ArrayList<Point> barList;
+    TechPolyline barList;
     Point p;
     Point lastP;
     float spectNum;
-    for (int n = 0; n < bars.size(); n++) {
+    for (int n = 0; n < bars.length; n++) {
       if ((bandCount / 5) > n) {
         spectNum = spectrum[n] / 2;
       } else {
         spectNum = spectrum[n] * 2;
       }
       stroke(n / colorRange + colorStart, 255, 255, spectNum * 255 * colorstivity);
-      barList = bars.get(n);
+      barList = bars[n];
       for (int i = 1; i < barList.size(); i++) {
         p = barList.get(i);
         lastP = barList.get(i-1);
@@ -165,10 +165,10 @@ class TechVisualizer implements IVisualizer {
   }
   
   void reset() {
-    bars = new ArrayList<ArrayList<Point>>();
+    bars = new TechPolyline[bandCount];
     for (int i = 0; i < bandCount; i++) {
-      bars.add(new ArrayList<Point>());
-      bars.get(i).add(new Point(width / 2, height / 2));
+      bars[i] = new TechPolyline();
+      bars[i].add(new Point(width / 2, height / 2));
       //(width / bandCount) * i
     }
     newDir = true;
