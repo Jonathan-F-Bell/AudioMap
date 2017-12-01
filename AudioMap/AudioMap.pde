@@ -52,6 +52,8 @@ void draw() {
   v.update(spectrum);
   v.display();
   
+  m.display();
+  
   //for(int i = 0; i < bandCount; i++) {
   //  pushStyle();
   //  colorMode(HSB);
