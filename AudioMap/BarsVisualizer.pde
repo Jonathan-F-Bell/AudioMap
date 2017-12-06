@@ -52,7 +52,6 @@ class BarsVisualizer implements IVisualizer {
     noStroke();
     for(int i = 0; i < bandCount; i++) {
       fill(i / colorRange + colorStart, 255, spectrum[i] * 255 * colorstivity, fade);
-      //rect( (width / bandCount) * i, height - spectrum[i]*height*stivity, width / bandCount, height - spectrum[i]*height*stivity);
       rect( (width / bandCount) * i, 0, width / bandCount, height);
     }
     if (blurOn) {

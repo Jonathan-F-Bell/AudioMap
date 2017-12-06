@@ -33,9 +33,7 @@ void setup() {
   in.start();
   
   fft.input(in);
-  
-  //This is a placeholder, will be replaced with manual
-  //control for choosing a visualizer type
+ 
   v = vFactory.makeVisualizer("bars", bandCount);
   println(v);
 }
@@ -54,15 +52,7 @@ void draw() {
   
   m.display();
   
-  //for(int i = 0; i < bandCount; i++) {
-  //  pushStyle();
-  //  colorMode(HSB);
-  //  noStroke();
-  //  fill(i, 255, spectrum[i] * 255 * colorstivity, 50);
-  //  //rect( (width / bandCount) * i, height - spectrum[i]*height*stivity, width / bandCount, height - spectrum[i]*height*stivity);
-  //  rect( (width / bandCount) * i, 0, width / bandCount, height);
-  //  popStyle();
-  //}
+  
 }
 
 void keyReleased() {

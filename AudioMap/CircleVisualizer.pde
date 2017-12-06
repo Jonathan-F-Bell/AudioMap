@@ -65,7 +65,6 @@ class CircleVisualizer implements IVisualizer {
     for(int i = 0; i < bandCount; i++) {
       pushMatrix();
       fill(i / colorRange + colorStart, 255, 255, fadeLine);
-      //rect( (width / bandCount) * i, height - spectrum[i]*height*stivity, width / bandCount, height - spectrum[i]*height*stivity);
       translate(width / 2, height / 2);
       rotate(((2 * PI) / bandCount) * i);
       translate(0, r);

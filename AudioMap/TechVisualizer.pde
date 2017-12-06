@@ -130,7 +130,7 @@ class TechVisualizer implements IVisualizer {
         edge = false;
       }
       curBar.set(curBar.size() - 1, new Point((int)(last.x + (spectValue * xVel * curBar.xRev)), (int)(last.y + (spectValue * yVel * curBar.yRev))));
-      //curBar.add(new Point((int)(last.x + (spectValue * xVel)), (int)(last.y + (spectValue * yVel))));
+      
     }
     if (newDir) {
       newDir = false;
